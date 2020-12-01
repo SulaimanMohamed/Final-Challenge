@@ -1,0 +1,60 @@
+<div *ngIf="user">
+    <div>
+        <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Add Fixture</h1>
+        </div>
+
+        <!-- Student form -->
+        <form [formGroup]="fixtureForm" (ngSubmit)="submitStudentData()" novalidate>
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label>Time</label>
+                            <input type="time" formControlName="fixtureTime" class="form-control" required>
+                            <!-- Showing errors using getter method -->
+                            <p *ngIf="fixtureTime.touched && fixtureTime.invalid" class="error"><sup>*</sup>Please
+                                provide
+                                time
+                            </p>
+
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <label>Date</label>
+                            <input type="Date" min="2020-12-01" formControlName="fixtureDate" class="form-control"
+                                required>
+                            <!-- Showing errors using getter method -->
+                            <p *ngIf="fixtureDate.touched && fixtureDate.invalid" class="error"><sup>*</sup>Please
+                                provide
+                                Date</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label>Location</label>
+                            <input type="text" formControlName="fixtureLocation" class="form-control" required>
+                            <!-- Showing errors using getter method -->
+                            <p *ngIf="fixtureLocation.touched && fixtureLocation.invalid" class="error">
+                                <sup>*</sup>Please
+                                provide
+                                Location</p>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <input type="hidden" formControlName="courtFeesPaidBy" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-3">
+
+                            <input type="hidden" formControlName="amountPaid" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary" [disabled]="!fixtureForm.valid">Add
+                            Fixture</button>
+                    </div>
+
+                </div>
+            </div>
+        </form><!-- Student form ends-->
+    </div>
+</div>

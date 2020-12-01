@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">User Registration</h1>
+</div>
+
+<div class="row mt-4">
+
+    <div class="col-12">
+        <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)" novalidate>
+            <div class="row">
+                <div class="row" *ngIf="authError">
+                    <div class="col-12 alert alert-danger">{{ authError?.message }}</div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label for="firstName">First name</label>
+                    <input ngModel #firstname="ngModel" name="firstName" type="text" class="form-control" id="firstName"
+                        required>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <label for="lastName">Last name</label>
+                    <input ngModel #lastname="ngModel" name="lastName" type="text" class="form-control" id="lastName"
+                        required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-2">
+                    <label for="email">Email</label>
+                    <input ngModel #email="ngModel" name="email" type="email" class="form-control" required>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <label for="password">Password</label>
+                        <input ngModel #password="ngModel" name="password" type="password" class="form-control"
+                            required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <input ngModel #role="ngModel" name="role" type="hidden" class="form-control" id="Unverified">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" type="submit" [disabled]="!userRegForm.valid"
+                            (click)="showToaster()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

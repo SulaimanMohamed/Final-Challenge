@@ -1,0 +1,25 @@
+@media only screen and (min-width: 900px) {
+    form {
+        width: 700px;
+    }
+}
+
+p {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+p span {
+    background: #fff;
+    padding: 0 10px;
+    font-style: italic;
+}
+
+.google-btn {
+    border: 2px grey solid;
+    border-radius: 5px;
+    width: 100%;
+}

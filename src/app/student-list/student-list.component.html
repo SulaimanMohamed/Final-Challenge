@@ -1,0 +1,59 @@
+<div *ngIf="user">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Fixture List</h1>
+        <!-- It won't show if there is no student data -->
+        <a routerLink="/register-student" class="btn btn-success" *ngIf="hideWhenNoStudent">
+            <i class="fas fa-plus custom-fa-plus"></i>
+            Add Fixture
+        </a>
+    </div>
+
+    <div class="pricing-header mx-auto">
+
+        <!-- No data shows when their is no student data available -->
+        <div class="no-data text-center" *ngIf="noData">
+
+            <p class="nodata-msg">No fixture added yet!</p>
+            <a routerLink="/register-student" class="btn btn-success">
+                <i class="fas fa-plus custom-fa-plus"></i>
+                Add Fixture
+            </a>
+        </div>
+
+        <!-- Showing students data -->
+        <div class="table-responsive" *ngIf="hideWhenNoStudent">
+            <table class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th scope="col">Fixture Id</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Court Fees Paid By</th>
+                        <th scope="col">Amount Paid</th>
+                        <th class="text-center" scope="col">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- *ngFor loop iterates over Student array and fetch the student's data -->
+                    <!-- paginate pipe will add pagination in student's list, it won't show if items are less then 7 -->
+                    <tr *ngFor="let fixture of Fixture | paginate: { itemsPerPage: 7, currentPage: p }; let i = index;">
+                        <th scope="row">{{fixture.$key}}</th>
+                        <td>{{fixture.fixtureTime }}</td>
+                        <td>{{fixture.fixtureDate | date}}</td>
+                        <td>{{fixture.fixtureLocation}}</td>
+                        <td>{{fixture.courtFeesPaidBy}}</td>
+                        <td>{{fixture.amountPaid}}</td>
+                        <td class="text-center action-block">
+                            <!-- routerLink="/edit-student/{{student.$key}}" is refered to { path: 'edit-student/:id', component: EditStudentComponent } in app-routing.moudles.ts -->
+                            <i class="far fa-edit" routerLink="/edit-student/{{fixture.$key}}"></i>
+                            <i class="far fa-trash-alt" (click)="deleteStudent(fixture)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+        <pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+    </div>
+</div>
